@@ -9,6 +9,7 @@ function App() {
       </header>
 
       <main className="app__main">
+        <div>Dima</div>
       </main>
 
     </div>
