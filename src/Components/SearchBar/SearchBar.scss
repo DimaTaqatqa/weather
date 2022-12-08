@@ -1,0 +1,17 @@
+.search-bar{
+    background-color: #84a5da;
+    height: 70px;
+    .seacrh-bar-components{
+        // margin-left: 10px;
+        .text-field:focus{
+            background-color:#84a5da;
+            outline: none;
+            color: white;
+        }
+        .button{
+            background-color: #5d7ac1;
+            border: none;
+            font-family: 'Raleway';
+        }
+    }
+}

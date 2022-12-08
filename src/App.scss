@@ -2,10 +2,13 @@
   height: 100vh;
   width: 100vw;
   transition: background-color 1s ease-in;
+  background-color: #a5cdf0;
 }
 
 .app__header,
 .app__main {
+  background-color: #a5cdf0;
+
   width: 100%;
   display: flex;
   flex-direction: column;
