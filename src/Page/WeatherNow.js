@@ -1,4 +1,6 @@
 import React from "react";
+import { imgPicker } from "../Uitls/imgPicker";
+//import { useState } from "react";
 function WeatherNow({ data }) {
 
     const _data = data
@@ -6,34 +8,20 @@ function WeatherNow({ data }) {
     const temp_max = _data?.main?.temp_max;
     const humidity = _data?.main?.humidity;
     const pressure = _data?.main?.pressure;
-    //  const _weatherInfo = _data.weather[0].description || ''
-    // const _weatherInfo =weatherInfo;
+    const weatherInfo = _data.weather
+    const weather = (weatherInfo ?? [])[0];
+    const id = (weather ?? {}).id;
+    const description = (weather ?? {}).description;
 
-    // const id = _weatherInfo?.main ;
-    //  const description = _weatherInfo?.description;
-
-
-    // console.log(data)
-
-    // console.log(_data.weather[0].description)
-    // console.log(temp_max)
-
-    // console.log(humidity)
-    // console.log(pressure)
-    // console.log(id)
-    // console.log(description)
-
-
-
-
+    const img = imgPicker(id)
 
     return (
         <div className="body">
-            <img src="/img/weather-icons/storm.svg" alt='storm-icon' />
-            <h5 className="text-center mt-3 text-white">description</h5>
-            <h4 className="text-center mt-3">Tempreture   {temp_min}   c to {temp_max}   c</h4>
+            <img src={`/img/weather-icons/${img}`} alt='storm-icon' />
+            <h5 className="text-center mt-3 text-white">{description}</h5>
+            <h4 className="text-center mt-3">Tempreture   {temp_min}   °C to {temp_max}   °C</h4>
             <div className="row mt-3 align-items-start">
-                <div className="col-xs-6 col-sm-6 col-md-6 text-center fw-bold">Humidity {humidity}</div>
+                <div className="col-xs-6 col-sm-6 col-md-6 text-center fw-bold">Humidity {humidity}%</div>
                 <div className="col-xs-6 col-sm-6 col-md-6 text-center fw-bold">Pressure {pressure}</div>
             </div>
         </div>

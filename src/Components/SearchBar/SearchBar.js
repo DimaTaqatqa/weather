@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
         this.setState({
             cityName: ""
         })
-       
+
     }
 
     render() {
