@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import SearchBar from './Components/SearchBar/SearchBar';
@@ -14,8 +14,9 @@ function App() {
 
 
   async function fData() {
+    //const city = "london"
 
-    const resp = await FetchData('http://api.openweathermap.org/data/2.5/forecast?q=moscow&cnt=8&units=metric&appid=3e2dc9040fdc82aca1842da191a61659', 'GET');
+    const resp = await FetchData(`http://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&cnt=8&units=metric&appid=3e2dc9040fdc82aca1842da191a61659`, 'GET');
 
     if (resp.status === 200) {
       const data = resp.data.list;
@@ -31,20 +32,31 @@ function App() {
 
   }
 
+
   useEffect(() => {
     fData()
-  }, [CITY_NAME]);
+  });
 
-  function onFindWeather(cityName) {
-    // console.log("after " + cityName);
-    setCityName(cityName);
-    // console.log("after " + cityName);
+  // function onFindWeather(cityName) {
+  //   // console.log("after " + cityName);
+  //   setCityName(cityName);
+  //   //console.log("after " + cityName);
 
-  }
+  // }
+  const sendData = useCallback((data) => {
+    //console.log(data)
+    setCityName(data)
+    console.log(CITY_NAME)
+
+  }, [CITY_NAME])
+
+  useEffect(() => {
+    sendData()
+  }, [sendData]);
 
   return (
     <div className="app">
-      <SearchBar onChange={() => { onFindWeather() }} />
+      <SearchBar sendData={sendData} />
       <main className="app__main">
         <WeatherNow data={currentInfo} />
         <WeatherInHours data={futureInfo} />

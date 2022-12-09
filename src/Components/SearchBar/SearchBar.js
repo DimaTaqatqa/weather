@@ -13,13 +13,17 @@ class SearchBar extends React.Component {
         await this.setState({
             cityName: e.target.value
         })
-        if ('onChange' in this.props) { // if I changed the select after witting the input
-            this.props.onChange(this.state.cityName)
-        }
+        //console.log(this.state.cityName)
+        
     }
 
     async onFindWeatherClicked(e) {
         await e.preventDefault();
+        //console.log(this.state.cityName)
+
+        // if ('onChange' in this.props) { // if I changed the select after witting the input
+            this.props.sendData(this.state.cityName)
+        //}
         this.setState({
             cityName: ""
         })
@@ -29,13 +33,13 @@ class SearchBar extends React.Component {
     render() {
         return (
             <div className="search-bar">
-                <form onSubmit={this.onFindWeatherClicked.bind(this)}>
-                    <div className="seacrh-bar-components ms-3">
-                        <input className="text-field mt-3" type="text" value={this.state.cityName}
-                            onChange={this.onCityNameChanged.bind(this)} />
-                        <button type="submit" className="button ms-2"> FIND WEATHER</button>
-                    </div>
-                </form>
+                {/* <form onSubmit={this.onFindWeatherClicked.bind(this)}> */}
+                <div className="seacrh-bar-components ms-3">
+                    <input className="text-field mt-3" type="text" value={this.state.cityName}
+                        onChange={this.onCityNameChanged.bind(this)} />
+                    <button onClick={this.onFindWeatherClicked.bind(this)} type="submit" className="button ms-2"> FIND WEATHER</button>
+                </div>
+
 
             </div>
         )
